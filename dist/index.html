@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VantoLab</title>
+<meta name="description" content="VantoLab — 个人 AI 实验室">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="scene" data-tod="day" data-wx="sun" data-flip="x" data-di="0" data-mi="0" style="min-height:100vh;display:flex;flex-direction:column;font-family:var(--sans);background:var(--bg);color:var(--ink);transition:background-color 1.1s ease,color 1.1s ease">
+
+
+<main style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(28px,5vh,52px);padding:clamp(32px,6vh,80px) clamp(20px,5vw,72px)">
+
+  <div style="display:flex;flex-direction:column;gap:clamp(10px,1.6vh,18px);max-width:900px">
+    <div style="display:flex;align-items:baseline;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)">
+      <span style="width:26px;height:2px;background:var(--paint);display:inline-block"></span>
+      <span>Laboratorio personale</span>
+    </div>
+
+    <h1 style="margin:0;font-weight:400;line-height:.9;display:flex;flex-wrap:wrap;align-items:flex-end;gap:0">
+      <span style="font-family:var(--serif);font-style:italic;font-size:clamp(54px,11.5vw,132px);line-height:.86;letter-spacing:-.05em">vanto</span>
+      <span style="display:flex;flex-direction:column;line-height:1;padding-left:clamp(6px,1vw,12px);padding-bottom:clamp(6px,1vh,14px)">
+        <span style="font-family:var(--mono);font-weight:700;font-size:clamp(20px,3.4vw,40px);letter-spacing:.2em">LAB</span>
+        <span style="height:2px;background:var(--accent);margin-top:clamp(4px,.7vh,8px);animation:pinPulse 26s linear infinite"></span>
+        <span style="font-family:var(--mono);font-size:clamp(8.5px,1.1vw,11px);letter-spacing:.24em;color:var(--dim);margin-top:clamp(4px,.7vh,8px)">EST 2026</span>
+      </span>
+    </h1>
+
+    <div style="border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 32px">
+      <p style="margin:0;font-size:14px;line-height:1.6;color:var(--dim)">
+        <span style="font-family:var(--serif);font-style:italic;color:var(--ink)">vanto</span><span style="font-family:var(--mono);font-size:12px"> /'van.to/ </span><span style="font-family:var(--mono);font-size:11.5px;letter-spacing:.1em">IT. N. </span><span style="font-size:14.5px">pride, glory</span>
+      </p>
+      <p style="margin:0;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)">van · to · lab</p>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="position:relative;width:100%;max-width:720px;overflow:hidden">
+    <div id="flip"></div>
+    <svg viewBox="0 0 900 380" width="900" height="380" role="img" aria-label="一辆面包车沿公路开往实验室" style="display:block;width:100%;max-width:720px;height:auto">
+      <defs>
+        <radialGradient id="lampGlow">
+          <stop offset="0%" style="stop-color:var(--accent)" stop-opacity=".8"></stop>
+          <stop offset="35%" style="stop-color:var(--accent)" stop-opacity=".34"></stop>
+          <stop offset="100%" style="stop-color:var(--accent)" stop-opacity="0"></stop>
+        </radialGradient>
+        <linearGradient id="vanShadow" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" style="stop-color:var(--ink)" stop-opacity=".26"></stop>
+          <stop offset="45%" style="stop-color:var(--ink)" stop-opacity=".14"></stop>
+          <stop offset="100%" style="stop-color:var(--ink)" stop-opacity="0"></stop>
+        </linearGradient>
+        <linearGradient id="glintGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0"></stop>
+          <stop offset="45%" stop-color="#ffffff" stop-opacity=".85"></stop>
+          <stop offset="55%" stop-color="#ffffff" stop-opacity=".85"></stop>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+        </linearGradient>
+        <clipPath id="glassClip">
+          <path d="M421 261 L488 261 C491 261 492 259 492 256 L492 201 C492 198 490 196 487 196 L447 196 C434 197 426 205 423 217 L417 248 C416 256 417 261 421 261 Z"></path>
+          <path d="M579 261 L512 261 C509 261 508 259 508 256 L508 201 C508 198 510 196 513 196 L553 196 C566 197 574 205 577 217 L583 248 C584 256 583 261 579 261 Z"></path>
+        </clipPath>
+        <filter id="beamBlur" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="7"></feGaussianBlur>
+        </filter>
+      </defs>
+      <g fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+
+        <g id="sunwrap">
+          <g style="animation:sunSpin 120s linear infinite;transform-origin:806px 62px">
+            <circle cx="806" cy="62" r="30" fill="var(--accent)" stroke="var(--ink)"></circle>
+            <path d="M806 14 L806 2 M806 122 L806 110 M758 62 L746 62 M866 62 L854 62 M772 28 L764 20 M840 96 L848 104 M840 28 L848 20 M772 96 L764 104"></path>
+          </g>
+        </g>
+
+        <g id="nightscene">
+          <path d="M832 34 A30 30 0 1 0 832 92 A24 24 0 1 1 832 34 Z" fill="var(--bg)" stroke="var(--ink)"></path>
+          <g stroke-width="2.5">
+            <path d="M700 36 L700 48 M694 42 L706 42" style="animation:twinkle 4s ease-in-out infinite"></path>
+            <path d="M756 108 L756 118 M751 113 L761 113" style="animation:twinkle 5.5s ease-in-out infinite -1.4s"></path>
+            <path d="M868 118 L868 128 M863 123 L873 123" style="animation:twinkle 6.5s ease-in-out infinite -2.6s"></path>
+            <path d="M254 58 L254 68 M249 63 L259 63" style="animation:twinkle 5s ease-in-out infinite -.8s"></path>
+            <path d="M318 116 L318 124 M314 120 L322 120" style="animation:twinkle 7s ease-in-out infinite -3.2s"></path>
+          </g>
+        </g>
+
+        <g id="cloudA" style="animation:cloudDrift 46s ease-in-out infinite alternate">
+          <path class="cloud" d="M96 96 L216 96 C216 96 214 76 196 74 C192 56 168 50 156 62 C142 52 122 60 122 76 C104 76 96 86 96 96 Z" fill="var(--bg)"></path>
+          <g class="cstreak" stroke-width="2.5">
+            <path d="M70 78 L92 78 M56 90 L86 90 M74 102 L108 102"></path>
+          </g>
+          <g class="cdrip" fill="var(--ink)" stroke="none" opacity=".45">
+            <ellipse cx="130" cy="104" rx="2.6" ry="4"></ellipse>
+            <ellipse cx="162" cy="108" rx="2.6" ry="4"></ellipse>
+            <ellipse cx="194" cy="104" rx="2.6" ry="4"></ellipse>
+          </g>
+        </g>
+        <g id="cloudB" transform="translate(-90,0)" style="animation:cloudDrift 64s ease-in-out infinite alternate-reverse">
+          <path class="cloud" d="M596 62 L692 62 C692 62 690 46 676 44 C672 30 652 26 642 36 C630 28 614 34 614 47 C600 47 596 55 596 62 Z" fill="var(--bg)"></path>
+          <g class="cstreak" stroke-width="2.5">
+            <path d="M572 46 L592 46 M558 56 L586 56 M574 68 L604 68"></path>
+          </g>
+          <g class="cdrip" fill="var(--ink)" stroke="none" opacity=".45">
+            <ellipse cx="626" cy="70" rx="2.4" ry="3.6"></ellipse>
+            <ellipse cx="656" cy="74" rx="2.4" ry="3.6"></ellipse>
+          </g>
+        </g>
+
+        <g id="birds" style="animation:birdGlide 26s linear infinite">
+          <g style="animation:birdFlap 1.1s ease-in-out infinite;transform-origin:120px 128px">
+            <path d="M104 121 Q113 130 120 131 Q127 130 136 121" stroke-width="3.5" fill="none"></path>
+            <path d="M138 138 Q145 145 150 146 Q155 145 162 138" stroke-width="2.5" opacity=".6" fill="none"></path>
+          </g>
+        </g>
+
+        <g id="rain" stroke="var(--ink)" opacity=".5" stroke-width="2">
+          <path d="M120 40 L112 68" style="animation:rainFall 1.05s linear infinite"></path>
+          <path d="M196 30 L188 58" style="animation:rainFall 1.2s linear infinite -.4s"></path>
+          <path d="M268 46 L260 74" style="animation:rainFall .95s linear infinite -.7s"></path>
+          <path d="M340 24 L332 52" style="animation:rainFall 1.15s linear infinite -.2s"></path>
+          <path d="M416 40 L408 68" style="animation:rainFall 1s linear infinite -.85s"></path>
+          <path d="M492 28 L484 56" style="animation:rainFall 1.25s linear infinite -.55s"></path>
+          <path d="M566 44 L558 72" style="animation:rainFall .9s linear infinite -.1s"></path>
+          <path d="M640 26 L632 54" style="animation:rainFall 1.1s linear infinite -.65s"></path>
+          <path d="M714 42 L706 70" style="animation:rainFall 1.2s linear infinite -.3s"></path>
+          <path d="M788 30 L780 58" style="animation:rainFall 1s linear infinite -.9s"></path>
+          <path d="M856 46 L848 74" style="animation:rainFall 1.15s linear infinite -.5s"></path>
+          <path d="M158 60 L150 88" style="animation:rainFall 1.3s linear infinite -1.05s"></path>
+          <path d="M304 66 L296 94" style="animation:rainFall 1.05s linear infinite -.35s"></path>
+          <path d="M452 60 L444 88" style="animation:rainFall 1.2s linear infinite -.75s"></path>
+          <path d="M604 68 L596 96" style="animation:rainFall .95s linear infinite -.15s"></path>
+          <path d="M752 64 L744 92" style="animation:rainFall 1.25s linear infinite -.95s"></path>
+        </g>
+
+        <g id="snow" fill="var(--snowA)" stroke="var(--snowC)" stroke-width="2">
+          <circle cx="110" cy="30" r="5" style="animation:snowFall 7.5s linear infinite"></circle>
+          <circle cx="188" cy="20" r="4" style="animation:snowFall 8.5s linear infinite -1.2s"></circle>
+          <circle cx="262" cy="34" r="5.5" style="animation:snowFall 6.8s linear infinite -2.4s"></circle>
+          <circle cx="336" cy="18" r="4" style="animation:snowFall 9s linear infinite -.6s"></circle>
+          <circle cx="410" cy="30" r="5" style="animation:snowFall 7.2s linear infinite -3.1s"></circle>
+          <circle cx="486" cy="22" r="4.5" style="animation:snowFall 8.2s linear infinite -1.8s"></circle>
+          <circle cx="560" cy="36" r="5" style="animation:snowFall 6.6s linear infinite -4.2s"></circle>
+          <circle cx="636" cy="20" r="4" style="animation:snowFall 8.8s linear infinite -2.9s"></circle>
+          <circle cx="710" cy="32" r="5.5" style="animation:snowFall 7s linear infinite -.4s"></circle>
+          <circle cx="784" cy="24" r="4" style="animation:snowFall 8.4s linear infinite -3.6s"></circle>
+          <circle cx="852" cy="34" r="5" style="animation:snowFall 7.8s linear infinite -1.5s"></circle>
+          <circle cx="150" cy="58" r="4" style="animation:snowFall 9.2s linear infinite -5.1s"></circle>
+          <circle cx="300" cy="62" r="5" style="animation:snowFall 7.4s linear infinite -2.2s"></circle>
+          <circle cx="452" cy="56" r="4.5" style="animation:snowFall 8.6s linear infinite -4.8s"></circle>
+          <circle cx="600" cy="64" r="4" style="animation:snowFall 6.9s linear infinite -.9s"></circle>
+          <circle cx="748" cy="58" r="5" style="animation:snowFall 8s linear infinite -3.4s"></circle>
+        </g>
+
+        <g id="wind" stroke="var(--ink)" stroke-width="2.5" opacity=".7">
+          <path d="M60 128 C120 118 180 138 250 126" style="animation:gust 2.4s linear infinite"></path>
+          <path d="M60 168 C130 158 190 176 268 164" style="animation:gust 2.8s linear infinite -1.1s"></path>
+          <path d="M60 96 C110 88 160 104 222 94" stroke-width="2" style="animation:gust 3.2s linear infinite -2s"></path>
+          <path d="M60 212 C120 204 176 220 244 208" stroke-width="2" style="animation:gust 2.2s linear infinite -.6s"></path>
+          <g fill="var(--ink)" stroke="none">
+            <circle cx="90" cy="146" r="4" style="animation:gust 2.6s linear infinite -1.5s"></circle>
+            <circle cx="90" cy="190" r="3" style="animation:gust 3s linear infinite -.3s"></circle>
+          </g>
+        </g>
+
+        <g id="hills" stroke="none">
+          <path d="M2 252 C80 228 140 240 222 229 C300 219 358 236 440 227 C520 219 582 237 664 229 C744 221 822 237 898 231 L898 252 Z" fill="var(--faint)" opacity=".7"></path>
+          <path d="M2 252 C118 242 198 247 300 241 C402 235 470 247 562 243 C662 239 762 249 898 243 L898 252 Z" fill="var(--faint)"></path>
+          <path d="M2 252 C118 242 198 247 300 241 C402 235 470 247 562 243 C662 239 762 249 898 243" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity=".3"></path>
+        </g>
+
+        <path d="M2 378 L898 378" stroke-width="2" opacity=".28"></path>
+        <path d="M404 252 L150 378 M566 252 L892 378" stroke-width="2.5"></path>
+        <path d="M2 252 L898 252" stroke-width="2" opacity=".3"></path>
+
+        <g fill="var(--faint)" stroke="none">
+          <rect x="352" y="262" width="30" height="4" style="animation:dashComeL 4.2s cubic-bezier(.15,.6,.35,1) infinite;transform-origin:367px 264px"></rect>
+          <rect x="352" y="262" width="30" height="4" style="animation:dashComeL 4.2s cubic-bezier(.15,.6,.35,1) infinite -1.4s;transform-origin:367px 264px"></rect>
+          <rect x="352" y="262" width="30" height="4" style="animation:dashComeL 4.2s cubic-bezier(.15,.6,.35,1) infinite -2.8s;transform-origin:367px 264px"></rect>
+          <rect x="590" y="262" width="30" height="4" style="animation:dashComeR 4.2s cubic-bezier(.15,.6,.35,1) infinite -.7s;transform-origin:605px 264px"></rect>
+          <rect x="590" y="262" width="30" height="4" style="animation:dashComeR 4.2s cubic-bezier(.15,.6,.35,1) infinite -2.1s;transform-origin:605px 264px"></rect>
+          <rect x="590" y="262" width="30" height="4" style="animation:dashComeR 4.2s cubic-bezier(.15,.6,.35,1) infinite -3.5s;transform-origin:605px 264px"></rect>
+        </g>
+
+        <g id="props" stroke="var(--ink)" stroke-width="2.5">
+          <g style="animation:propPass 4.2s cubic-bezier(.15,.6,.35,1) infinite -.9s;transform-origin:184px 330px">
+            <path d="M156 330 C152 314 164 302 178 306 C186 294 206 298 208 312 C220 314 222 328 214 330 Z" fill="var(--bg)"></path>
+            <path d="M184 330 L184 316" stroke-width="2"></path>
+          </g>
+          <g style="animation:propPass 4.2s cubic-bezier(.15,.6,.35,1) infinite -3.1s;transform-origin:232px 336px">
+            <path d="M223 336 L223 312 L241 312 L241 336 Z" fill="var(--bg)"></path>
+            <path d="M222 312 C222 305 226 301 232 301 C238 301 242 305 242 312 Z" fill="var(--paint)" stroke-width="2.5"></path>
+            <path d="M227 319 L237 319" stroke-width="2" opacity=".6"></path>
+          </g>
+        </g>
+
+        <g id="snowman" stroke="var(--ink)" stroke-width="2.5">
+          <g style="animation:snowmanPass 9s cubic-bezier(.2,.55,.4,1) infinite;transform-origin:112px 300px">
+          <ellipse cx="112" cy="300" rx="34" ry="6" fill="var(--snowB)" stroke="none"></ellipse>
+          <path d="M84 300 C84 288 90 276 98 272 L126 272 C134 276 140 288 140 300 Z" fill="var(--snowA)" stroke-linejoin="round"></path>
+          <path d="M86 300 C86 294 88 288 92 283 C104 289 120 289 132 283 C136 288 138 294 138 300 Z" fill="var(--snowB)" stroke="none"></path>
+          <path d="M98 272 C98 262 102 254 108 251 L120 251 C126 254 130 262 130 272 Z" fill="var(--snowA)" stroke-linejoin="round"></path>
+          <path d="M104 253 L104 240 C104 236 108 234 114 234 C120 234 124 236 124 240 L124 253 Z" fill="var(--ink)" stroke="none"></path>
+          <path d="M96 253 L132 251" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"></path>
+          <path d="M97 274 L131 271 L131 264 L97 267 Z" fill="var(--accent)" stroke="none"></path>
+          <path d="M124 272 L132 285 L125 286 L118 273 Z" fill="var(--accent)" stroke="none"></path>
+          <g fill="var(--ink)" stroke="none">
+            <circle cx="109" cy="258" r="2"></circle>
+            <circle cx="121" cy="258" r="2"></circle>
+            <circle cx="112" cy="284" r="2.4"></circle>
+            <circle cx="112" cy="293" r="2.4"></circle>
+          </g>
+          <path d="M115 262 L123 265 L115 268" fill="var(--accent)" stroke="none"></path>
+          <path d="M90 284 L76 274 M136 288 L150 280" stroke-width="2.5"></path>
+          </g>
+        </g>
+
+        <g id="butterflies" stroke="var(--ink)" stroke-width="2">
+          <g style="animation:flit 17s ease-in-out infinite">
+            <g style="animation:wingBeat .32s ease-in-out infinite;transform-origin:250px 214px">
+              <path d="M250 214 C240 202 232 206 236 215 C240 222 247 221 250 214 Z" fill="var(--bg)"></path>
+              <path d="M250 214 C260 205 268 210 263 218 C259 224 252 221 250 214 Z" fill="var(--bg)"></path>
+            </g>
+            <path d="M250 209 L250 220" stroke-width="2.5"></path>
+            <path d="M250 209 L246 204 M250 209 L254 204" stroke-width="1.5"></path>
+          </g>
+          <g style="animation:flit 21s ease-in-out infinite -6s">
+            <g style="animation:wingBeat .38s ease-in-out infinite -.1s;transform-origin:292px 240px">
+              <path d="M292 240 C284 231 278 235 281 242 C284 247 290 245 292 240 Z" fill="var(--bg)"></path>
+              <path d="M292 240 C300 233 306 237 302 244 C299 248 294 246 292 240 Z" fill="var(--bg)"></path>
+            </g>
+            <path d="M292 236 L292 245" stroke-width="2"></path>
+          </g>
+        </g>
+
+        <g id="signpass" style="animation:signPass 4.2s cubic-bezier(.15,.6,.35,1) infinite;transform-origin:748px 314px">
+        <g id="sign" style="transform-origin:748px 314px">
+          <path d="M742 282 L742 314 M754 282 L754 314" stroke-width="3"></path>
+          <path d="M676 206 L788 206 L788 282 L676 282 Z" fill="var(--bg)"></path>
+          <text x="690" y="234" style="font-family:var(--mono);font-size:19px;letter-spacing:.12em" fill="var(--ink)" stroke="none">LAB</text>
+          <path d="M754 227 L772 227 M765 220 L772 227 L765 234" stroke-width="2.5"></path>
+          <path d="M676 244 L788 244" stroke-width="2" opacity=".45"></path>
+          <g style="font-family:var(--mono);font-size:24px;letter-spacing:.06em" fill="var(--ink)" stroke="none">
+            <text id="d0" x="688" y="272">200 km</text>
+            <text id="d1" x="688" y="272">150 km</text>
+            <text id="d2" x="688" y="272">100 km</text>
+            <text id="d3" x="688" y="272">50 km</text>
+            <text id="d4" x="688" y="272">20 km</text>
+            <text id="d5" x="688" y="272">5 km</text>
+          </g>
+          <g id="snowcaps" stroke="var(--snowC)" stroke-width="2.5" stroke-linejoin="round">
+            <path d="M674 207 C668 194 680 183 694 187 C702 175 724 177 730 189 C744 183 762 188 764 199 C776 198 790 200 789 207 Z" fill="var(--snowA)"></path>
+            <path d="M676 207 C676 202 680 198 686 198 C700 204 716 198 730 196 C744 194 758 200 772 199 C782 199 787 202 787 207 Z" fill="var(--snowB)" stroke="none"></path>
+          </g>
+        </g>
+        <ellipse cx="748" cy="316" rx="20" ry="5" fill="var(--ink)" stroke="none" opacity=".18"></ellipse>
+        </g>
+
+        <g id="puddle" stroke="none" fill="var(--ink)">
+          <g style="animation:shimmer 2.6s ease-in-out infinite;transform-origin:500px 366px">
+            <ellipse cx="500" cy="366" rx="104" ry="9" opacity=".3"></ellipse>
+            <rect x="428" y="360" width="144" height="4" opacity=".45"></rect>
+            <rect x="452" y="368" width="96" height="3" opacity=".35"></rect>
+          </g>
+          <g style="animation:shimmer 3.4s ease-in-out infinite -1.2s;transform-origin:440px 374px">
+            <ellipse cx="440" cy="374" rx="42" ry="5" opacity=".3" fill="var(--accent)"></ellipse>
+            <ellipse cx="560" cy="374" rx="42" ry="5" opacity=".3" fill="var(--accent)"></ellipse>
+          </g>
+        </g>
+
+        <g id="flowers" transform="translate(196,26)" stroke="var(--ink)" stroke-width="2">
+          <path d="M636 342 L636 326 M654 344 L654 322 M670 342 L670 330" stroke-width="2.5"></path>
+          <g fill="var(--bg)">
+            <circle cx="632" cy="322" r="4"></circle><circle cx="640" cy="322" r="4"></circle><circle cx="636" cy="316" r="4"></circle>
+            <circle cx="650" cy="318" r="4"></circle><circle cx="658" cy="318" r="4"></circle><circle cx="654" cy="312" r="4"></circle>
+            <circle cx="666" cy="326" r="3.5"></circle><circle cx="674" cy="326" r="3.5"></circle><circle cx="670" cy="321" r="3.5"></circle>
+          </g>
+          <circle cx="636" cy="321" r="2" fill="var(--paint)" stroke="none"></circle>
+          <circle cx="654" cy="317" r="2" fill="var(--paint)" stroke="none"></circle>
+          <circle cx="670" cy="325" r="1.8" fill="var(--paint)" stroke="none"></circle>
+          <g style="animation:beeFlit 5s ease-in-out infinite;transform-origin:640px 300px">
+            <ellipse cx="640" cy="300" rx="4.5" ry="3" fill="var(--bg)"></ellipse>
+            <path d="M638 300 L642 300" stroke-width="1.5"></path>
+            <path d="M638 296 C635 291 641 290 641 295 M642 296 C645 291 639 290 639 295" stroke-width="1.5" fill="none"></path>
+          </g>
+        </g>
+
+        <g id="pole" stroke="var(--ink)" stroke-width="2.5">
+          <g style="animation:shoulderPass 8s linear infinite;transform-origin:120px 372px">
+            <path d="M120 372 L120 250" stroke-width="3"></path>
+            <path d="M96 262 L144 262" stroke-width="3"></path>
+            <path d="M102 274 L138 274" stroke-width="2.5"></path>
+            <path d="M144 262 C176 254 200 246 216 238 M138 274 C168 266 190 258 204 251" stroke-width="1.5" opacity=".45" fill="none"></path>
+            <path d="M96 262 C78 268 62 273 48 277 M102 274 C86 279 72 284 60 288" stroke-width="1.5" opacity=".45" fill="none"></path>
+            <g fill="var(--ink)" stroke="none">
+              <path d="M104 258 C104 253 108 251 111 253 L115 257 L108 261 Z"></path>
+              <path d="M126 258 C126 253 130 251 133 253 L137 257 L130 261 Z"></path>
+            </g>
+          </g>
+          <g style="animation:shoulderPass 8s linear infinite -4s;transform-origin:120px 372px">
+            <path d="M120 372 L120 250" stroke-width="3"></path>
+            <path d="M96 262 L144 262" stroke-width="3"></path>
+            <path d="M102 274 L138 274" stroke-width="2.5"></path>
+            <path d="M144 262 C176 254 200 246 216 238 M138 274 C168 266 190 258 204 251" stroke-width="1.5" opacity=".45" fill="none"></path>
+            <path d="M96 262 C78 268 62 273 48 277 M102 274 C86 279 72 284 60 288" stroke-width="1.5" opacity=".45" fill="none"></path>
+            <g fill="var(--ink)" stroke="none">
+              <path d="M110 258 C110 253 114 251 117 253 L121 257 L114 261 Z"></path>
+            </g>
+          </g>
+        </g>
+
+        <g id="lamp" stroke="var(--ink)" stroke-width="2.5">
+          <g style="animation:shoulderPass 9s linear infinite;transform-origin:104px 372px">
+            <path d="M104 372 L104 150 C104 134 116 126 136 126 L166 126" stroke-width="4" fill="none"></path>
+            <path d="M156 124 L182 124 L176 140 L162 140 Z" fill="var(--ink)"></path>
+            <path d="M169 140 L214 372 L360 336 Z" fill="#f2c063" opacity=".14" stroke="none"></path>
+            <circle cx="169" cy="143" r="5" fill="#f2c063" stroke="none"></circle>
+            <ellipse cx="104" cy="374" rx="13" ry="2.5" fill="var(--ink)" opacity=".25" stroke="none"></ellipse>
+          </g>
+          <g style="animation:shoulderPass 9s linear infinite -4.5s;transform-origin:104px 372px">
+            <path d="M104 372 L104 150 C104 134 116 126 136 126 L166 126" stroke-width="4" fill="none"></path>
+            <path d="M156 124 L182 124 L176 140 L162 140 Z" fill="var(--ink)"></path>
+            <path d="M169 140 L214 372 L360 336 Z" fill="#f2c063" opacity=".14" stroke="none"></path>
+            <circle cx="169" cy="143" r="5" fill="#f2c063" stroke="none"></circle>
+            <ellipse cx="104" cy="374" rx="13" ry="2.5" fill="var(--ink)" opacity=".25" stroke="none"></ellipse>
+          </g>
+          <circle cx="62" cy="350" r="2.6" fill="#f2c063" stroke="none" style="animation:fireflyBlink 2.6s ease-in-out infinite"></circle>
+          <circle cx="176" cy="322" r="2.2" fill="#f2c063" stroke="none" style="animation:fireflyBlink 3.4s ease-in-out infinite -1.2s"></circle>
+        </g>
+
+        
+
+        
+
+        
+
+        
+
+        <g id="meteor" stroke-width="2">
+          <g style="animation:meteorShot 14s linear infinite">
+            <circle cx="756" cy="84" r="2.6" fill="var(--ink)" stroke="none"></circle>
+            <path d="M756 84 L798 60" stroke="var(--ink)" opacity=".55"></path>
+            <path d="M760 88 L806 62" stroke="var(--ink)" opacity=".2"></path>
+          </g>
+        </g>
+
+        <g id="vanwrap" style="animation:vanDrift 13s ease-in-out infinite">
+        <g stroke="none">
+          <path d="M398 378 L602 378 L566 292 L434 292 Z" fill="url(#vanShadow)"></path>
+          <path d="M414 376 L586 376 L578 366 L422 366 Z" fill="var(--ink)" opacity=".1"></path>
+        </g>
+
+        <g id="nightbeams" fill="var(--accent)" stroke="none" filter="url(#beamBlur)">
+          <g style="animation:beamFlicker 3.4s ease-in-out infinite">
+            <path d="M424 309 L370 378 L470 378 L452 309 Z" opacity=".26"></path>
+            <path d="M576 309 L530 378 L630 378 L548 309 Z" opacity=".26"></path>
+            <ellipse cx="436" cy="374" rx="52" ry="12" opacity=".2"></ellipse>
+            <ellipse cx="568" cy="374" rx="52" ry="12" opacity=".2"></ellipse>
+          </g>
+        </g>
+
+        <g style="animation:vanBob 2.8s ease-in-out infinite;transform-origin:500px 300px">
+
+          <g transform="translate(0,17)">
+          <g stroke-width="2.5">
+            <g fill="none">
+              <circle cx="502" cy="141" r="19" fill="var(--bg)"></circle>
+              <circle cx="550" cy="141" r="19" fill="var(--bg)"></circle>
+              <circle cx="502" cy="141" r="4" fill="var(--ink)" stroke="none"></circle>
+              <circle cx="550" cy="141" r="4" fill="var(--ink)" stroke="none"></circle>
+              <path d="M502 141 L523 141 L535 110 L550 141"></path>
+              <path d="M523 141 L535 110"></path>
+              <path d="M502 141 L517 115 L535 110"></path>
+              <path d="M517 115 L511 108 M517 115 L525 112" stroke-width="2"></path>
+              <path d="M535 110 L535 102 M528 102 L542 102" stroke-width="2"></path>
+            </g>
+            <path d="M436 160 L564 160" stroke-width="3"></path>
+
+            <path d="M440 160 L444 124 C444 119 448 116 453 116 L479 116 C484 116 488 119 488 124 L492 160 Z" fill="var(--bg)"></path>
+            <path d="M452 117 L450 160 M480 117 L482 160" stroke-width="2.5" opacity=".7"></path>
+            <path d="M459 116 L459 109 C459 106 461 105 464 105 L468 105 C471 105 473 106 473 109 L473 116" fill="none" stroke-width="2.5"></path>
+            <path d="M446 137 L486 137" stroke-width="2" opacity=".4"></path>
+
+            <g id="snowrack" stroke="var(--snowC)" stroke-width="2.5" stroke-linejoin="round">
+              <path d="M442 118 C437 108 446 99 458 102 C464 92 480 92 486 101 C493 103 497 111 492 119 C476 125 456 125 442 118 Z" fill="var(--snowA)"></path>
+              <path d="M443 118 C458 124 477 124 491 118 C491 122 488 124 483 125 C468 128 454 127 449 124 C445 122 443 120 443 118 Z" fill="var(--snowB)" stroke="none"></path>
+              <path d="M527 100 C524 91 533 84 540 89 C547 84 556 91 553 100 Z" fill="var(--snowA)"></path>
+            </g>
+          </g>
+          </g>
+
+          
+          
+          
+
+          <path d="M415 344 C410 338 407.4 322 408 300 L412 242 C415 213 421 194 435 183 C446 174 468 170 500 170 C532 170 554 174 565 183 C579 194 585 213 588 242 L592 300 C592.6 322 590 338 585 344 Z" fill="var(--bg)" stroke-width="2.5" stroke-linejoin="round"></path>
+
+          <path d="M421 261 L488 261 C491 261 492 259 492 256 L492 201 C492 198 490 196 487 196 L447 196 C434 197 426 205 423 217 L417 248 C416 256 417 261 421 261 Z" fill="var(--faint)" fill-opacity=".55" stroke-width="2.5"></path>
+          <path d="M500 197 L500 261" stroke-width="3"></path>
+          <path d="M579 261 L512 261 C509 261 508 259 508 256 L508 201 C508 198 510 196 513 196 L553 196 C566 197 574 205 577 217 L583 248 C584 256 583 261 579 261 Z" fill="var(--faint)" fill-opacity=".55" stroke-width="2.5"></path>
+
+          <path d="M406.8 272 L593.2 272 L594.9 316 C595.8 330 591.6 340 587.4 344 L412.6 344 C408.4 340 404.2 330 405.1 316 Z" fill="var(--paint)" stroke-width="2.5"></path>
+          <path d="M407 272 C444 300 468 314 500 340 C532 314 556 300 593 272 Z" fill="var(--bg)" stroke-width="2.5" stroke-linejoin="round"></path>
+          <path d="M414 275 C448 301 471 315 500 336 C529 315 552 301 586 275" stroke-width="1.5" opacity=".35" fill="none"></path>
+          <circle cx="500" cy="281" r="23" fill="var(--bg)" stroke-width="2.5"></circle>
+          <path d="M486 271 L500 297 L514 271" stroke="var(--paint)" stroke-width="4" fill="none"></path>
+
+          <g id="snowvan" stroke="var(--snowC)" stroke-width="2.5" stroke-linejoin="round">
+            <path d="M393 220 C390 210 400 204 405 209 C410 204 420 210 417 220 Z" fill="var(--snowA)"></path>
+            <path d="M583 220 C580 210 590 204 595 209 C600 204 610 210 607 220 Z" fill="var(--snowA)"></path>
+            <g transform="translate(60,9) scale(.88,1)"><path d="M406 196 C400 182 412 172 426 175 C434 160 456 158 464 172 C474 158 496 156 506 170 C518 157 540 160 546 173 C560 164 578 170 580 181 C592 184 598 190 597 196 Z" fill="var(--snowA)"></path>
+            <path d="M408 196 C408 190 412 186 418 185 C430 191 444 187 458 184 C472 181 484 189 500 187 C516 185 528 180 542 184 C556 188 568 182 580 185 C588 187 593 191 593 196 Z" fill="var(--snowB)" stroke="none"></path>
+            <path d="M426 175 C434 181 446 182 456 178 M506 170 C514 178 530 180 544 173" stroke-width="2" opacity=".5"></path></g>
+          </g>
+
+          <g id="dog" clip-path="url(#glassClip)" stroke="var(--ink)" stroke-width="2.5">
+            <g style="animation:dogBob 1.8s ease-in-out infinite">
+              <path d="M438 250 C433 241 434 229 442 224 C453 218 464 226 464 238 C464 245 460 249 455 251 Z" fill="var(--bg)"></path>
+              <g style="animation:earFlap 1s ease-in-out infinite;transform-origin:440px 232px">
+                <path d="M440 232 C431 229 426 235 429 242 C432 247 438 245 441 239 Z" fill="var(--bg)"></path>
+              </g>
+              <path d="M458 227 C467 224 473 231 469 238 C466 242 460 240 457 234 Z" fill="var(--bg)"></path>
+              <g fill="var(--ink)" stroke="none">
+                <circle cx="444" cy="235" r="2.3"></circle>
+                <circle cx="456" cy="234" r="2.3"></circle>
+                <ellipse cx="444" cy="244" rx="4" ry="3"></ellipse>
+              </g>
+              <path d="M444 248 C442 252 446 255 450 253" stroke="var(--accent)" stroke-width="3"></path>
+            </g>
+          </g>
+
+          <g id="wheel" clip-path="url(#glassClip)" stroke="var(--ink)" stroke-width="2.5" fill="none" opacity=".3">
+            <path d="M530 252 C532 240 542 233 556 233"></path>
+          </g>
+
+          <g id="glint" clip-path="url(#glassClip)" stroke="none">
+            <g style="animation:glintSweep 8.5s linear infinite">
+              <rect x="360" y="176" width="34" height="112" fill="url(#glintGrad)" transform="rotate(16 377 232)"></rect>
+              <rect x="404" y="176" width="12" height="112" fill="url(#glintGrad)" transform="rotate(16 410 232)" opacity=".7"></rect>
+            </g>
+          </g>
+
+          <circle cx="438" cy="311" r="19" fill="#fff" stroke-width="2.5"></circle>
+          <circle cx="438" cy="311" r="7" fill="var(--ink)"></circle>
+          <circle cx="562" cy="311" r="19" fill="#fff" stroke-width="2.5"></circle>
+          <circle cx="562" cy="311" r="7" fill="var(--ink)"></circle>
+
+          <g id="nightlamps" stroke="none">
+            <g style="animation:glowPulse 3.4s ease-in-out infinite;transform-origin:438px 311px">
+              <circle cx="438" cy="311" r="46" fill="url(#lampGlow)"></circle>
+            </g>
+            <g style="animation:glowPulse 3.4s ease-in-out infinite -1.7s;transform-origin:562px 311px">
+              <circle cx="562" cy="311" r="46" fill="url(#lampGlow)"></circle>
+            </g>
+            <circle cx="438" cy="311" r="13" fill="var(--accent)"></circle>
+            <circle cx="562" cy="311" r="13" fill="var(--accent)"></circle>
+            <circle cx="438" cy="311" r="6" fill="#fff6f2"></circle>
+            <circle cx="562" cy="311" r="6" fill="#fff6f2"></circle>
+          </g>
+
+          <g id="wipers" stroke="var(--ink)" stroke-width="3">
+            <path d="M459.7 256 L456.3 214" style="animation:wipeL 1.5s ease-in-out infinite;transform-origin:459.7px 256px"></path>
+            <path d="M540.3 256 L543.7 214" style="animation:wipeR 1.5s ease-in-out infinite;transform-origin:540.3px 256px"></path>
+          </g>
+
+          <path d="M487 316 Q500 325 513 316" stroke-width="3"></path>
+          
+
+          <path d="M419.4 240 L409 234" stroke-width="2.5"></path>
+          <path d="M580.6 240 L591 234" stroke-width="2.5"></path>
+          <circle cx="405" cy="228" r="11" fill="var(--bg)" stroke-width="2.5"></circle>
+          <circle cx="595" cy="228" r="11" fill="var(--bg)" stroke-width="2.5"></circle>
+
+          <path d="M440 334 L454 334 L454 344 L440 344 Z M546 334 L560 334 L560 344 L546 344 Z" fill="var(--bg)" stroke-width="2.5"></path>
+          <path d="M411 340 L589 340 C592.4 340 594.1 343 594.1 347 L594.1 352 C594.1 356 592.4 358 589 358 L411 358 C407.6 358 405.9 356 405.9 352 L405.9 347 C405.9 343 407.6 340 411 340 Z" fill="var(--bg)" stroke-width="2.5"></path>
+          <path d="M411 349 L589 349" stroke-width="2" opacity=".3"></path>
+          
+
+          <g style="animation:wheelSquash 2.8s ease-in-out infinite;transform-origin:500px 372px" fill="var(--ink)" stroke="none">
+            <path d="M424 358 L462 358 L462 368 C462 371 460 372 457 372 L429 372 C426 372 424 371 424 368 Z"></path>
+            <path d="M538 358 L576 358 L576 368 C576 371 574 372 571 372 L543 372 C540 372 538 371 538 368 Z"></path>
+          </g>
+        </g>
+
+        </g>
+
+        <g id="splash" stroke="var(--ink)" stroke-width="2.5" opacity=".7">
+          <g transform="translate(212,366)"><g style="animation:splashPop 1.1s linear infinite"><path d="M-10 0 Q0 -12 10 0 M-15 -2 L-19 -8 M15 -2 L19 -8"></path></g></g>
+          <g transform="translate(300,352)"><g style="animation:splashPop 1.25s linear infinite -.5s"><path d="M-8 0 Q0 -10 8 0 M-12 -2 L-16 -7 M12 -2 L16 -7"></path></g></g>
+          <g transform="translate(676,358)"><g style="animation:splashPop 1.05s linear infinite -.8s"><path d="M-10 0 Q0 -12 10 0 M-15 -2 L-19 -8 M15 -2 L19 -8"></path></g></g>
+          <g transform="translate(772,372)"><g style="animation:splashPop 1.3s linear infinite -.25s"><path d="M-8 0 Q0 -10 8 0 M-12 -2 L-16 -7 M12 -2 L16 -7"></path></g></g>
+          <g transform="translate(126,340)"><g style="animation:splashPop 1.15s linear infinite -.95s"><path d="M-7 0 Q0 -9 7 0 M-11 -2 L-14 -6 M11 -2 L14 -6"></path></g></g>
+          <g transform="translate(470,190)" stroke-width="2"><g style="animation:splashPop .95s linear infinite -.35s"><path d="M-7 0 Q0 -9 7 0 M-10 -2 L-13 -7 M10 -2 L13 -7"></path></g></g>
+          <g transform="translate(536,190)" stroke-width="2"><g style="animation:splashPop 1.1s linear infinite -.7s"><path d="M-6 0 Q0 -8 6 0 M-9 -2 L-12 -6 M9 -2 L12 -6"></path></g></g>
+          <g transform="translate(500,268)" stroke-width="2"><g style="animation:splashPop 1s linear infinite -.15s"><path d="M-7 0 Q0 -9 7 0 M-10 -2 L-13 -7 M10 -2 L13 -7"></path></g></g>
+          <g transform="translate(440,290)" stroke-width="2"><g style="animation:splashPop 1.2s linear infinite -.6s"><path d="M-6 0 Q0 -8 6 0 M-9 -2 L-12 -6 M9 -2 L12 -6"></path></g></g>
+          <g transform="translate(566,296)" stroke-width="2"><g style="animation:splashPop 1.05s linear infinite -.9s"><path d="M-6 0 Q0 -8 6 0 M-9 -2 L-12 -6 M9 -2 L12 -6"></path></g></g>
+        </g>
+      </g>
+    </svg>
+    </div>
+    <div style="position:relative;min-height:40px">
+      <div id="m0" style="position:absolute;inset:0;display:flex;flex-direction:column;gap:5px">
+        <p style="margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)">solvitur ambulando</p>
+        <p style="margin:0;font-size:12.5px;letter-spacing:.14em;color:var(--dim)"><span style="letter-spacing:.26em">行走之中　答案自明</span><span style="display:inline-block;width:1px;height:.85em;background:var(--faint);margin:0 18px 0 10px;vertical-align:-.06em"></span><span style="font-size:13.5px;letter-spacing:.02em">It is solved by walking.</span></p>
+      </div>
+      <div id="m1" style="position:absolute;inset:0;display:flex;flex-direction:column;gap:5px">
+        <p style="margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)">per aspera ad astra</p>
+        <p style="margin:0;font-size:12.5px;letter-spacing:.14em;color:var(--dim)"><span style="letter-spacing:.26em">歷盡艱辛　以達星辰</span><span style="display:inline-block;width:1px;height:.85em;background:var(--faint);margin:0 18px 0 10px;vertical-align:-.06em"></span><span style="font-size:13.5px;letter-spacing:.02em">Through hardships to the stars.</span></p>
+      </div>
+      <div id="m2" style="position:absolute;inset:0;display:flex;flex-direction:column;gap:5px">
+        <p style="margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)">viam inveniam aut faciam</p>
+        <p style="margin:0;font-size:12.5px;letter-spacing:.14em;color:var(--dim)"><span style="letter-spacing:.26em">尋一條路　或造一條路</span><span style="display:inline-block;width:1px;height:.85em;background:var(--faint);margin:0 18px 0 10px;vertical-align:-.06em"></span><span style="font-size:13.5px;letter-spacing:.02em">I shall find a way, or make one.</span></p>
+      </div>
+      <div id="m3" style="position:absolute;inset:0;display:flex;flex-direction:column;gap:5px">
+        <p style="margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)">festina lente</p>
+        <p style="margin:0;font-size:12.5px;letter-spacing:.14em;color:var(--dim)"><span style="letter-spacing:.26em">從容地趕路</span><span style="display:inline-block;width:1px;height:.85em;background:var(--faint);margin:0 18px 0 10px;vertical-align:-.06em"></span><span style="font-size:13.5px;letter-spacing:.02em">Make haste, slowly.</span></p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer style="border-top:2px solid var(--ink);padding:18px clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--dim)">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px">
+    <a href="mailto:hi@vantolab.com">hi@vantolab.com</a>
+    <a href="https://github.com/vantolab" rel="noopener">GitHub</a>
+
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px 24px">
+    <span id="icp">ICP备案号待填</span>
+    <span>© 2026 VantoLab</span>
+  </div>
+</footer>
+
+</div>
+<script src="app.js" defer></script>
+</body>
+</html>
