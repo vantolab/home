@@ -1,5 +1,5 @@
 (function () {
-  var scene = document.getElementById('scene');
+  var scene = document.documentElement;
   if (!scene) return;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var tods = ['dawn', 'day', 'dusk', 'night'];

@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Scene from '../components/Scene.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout>
+<div id="scene" style="min-height:100vh;display:flex;flex-direction:column;font-family:var(--sans);background:var(--bg);color:var(--ink);transition:background-color 1.1s ease,color 1.1s ease">
+
+
+<main style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(28px,5vh,52px);padding:clamp(32px,6vh,80px) clamp(20px,5vw,72px)">
+
+  <div style="display:flex;flex-direction:column;gap:clamp(10px,1.6vh,18px);max-width:900px">
+    <div style="display:flex;align-items:baseline;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)">
+      <span style="width:26px;height:2px;background:var(--paint);display:inline-block"></span>
+      <span>Laboratorio personale</span>
+    </div>
+
+    <h1 style="margin:0;font-weight:400;line-height:.9;display:flex;flex-wrap:wrap;align-items:flex-end;gap:0">
+      <span style="font-family:var(--serif);font-style:italic;font-size:clamp(54px,11.5vw,132px);line-height:.86;letter-spacing:-.05em">vanto</span>
+      <span style="display:flex;flex-direction:column;line-height:1;padding-left:clamp(6px,1vw,12px);padding-bottom:clamp(6px,1vh,14px)">
+        <span style="font-family:var(--mono);font-weight:700;font-size:clamp(20px,3.4vw,40px);letter-spacing:.2em">LAB</span>
+        <span style="height:2px;background:var(--accent);margin-top:clamp(4px,.7vh,8px);animation:pinPulse 26s linear infinite"></span>
+        <span style="font-family:var(--mono);font-size:clamp(8.5px,1.1vw,11px);letter-spacing:.24em;color:var(--dim);margin-top:clamp(4px,.7vh,8px)">EST 2026</span>
+      </span>
+    </h1>
+
+    <div style="border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 32px">
+      <p style="margin:0;font-size:14px;line-height:1.6;color:var(--dim)">
+        <span style="font-family:var(--serif);font-style:italic;color:var(--ink)">vanto</span><span style="font-family:var(--mono);font-size:12px"> /'van.to/ </span><span style="font-family:var(--mono);font-size:11.5px;letter-spacing:.1em">IT. N. </span><span style="font-size:14.5px">pride, glory</span>
+      </p>
+      <p style="margin:0;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)">van · to · lab</p>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="position:relative;width:100%;max-width:720px;overflow:hidden">
+    <div id="flip"></div>
+    <Scene />
+    </div>
+    <div style="position:relative;min-height:40px">
+      <div id="m0" style="position:absolute;inset:0;display:flex;flex-direction:column;gap:5px">
+        <p style="margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)">solvitur ambulando</p>
+        <p style="margin:0;font-size:12.5px;letter-spacing:.14em;color:var(--dim)"><span style="letter-spacing:.26em">行走之中　答案自明</span><span style="display:inline-block;width:1px;height:.85em;background:var(--faint);margin:0 18px 0 10px;vertical-align:-.06em"></span><span style="font-size:13.5px;letter-spacing:.02em">It is solved by walking.</span></p>
+      </div>
+      <div id="m1" style="position:absolute;inset:0;display:flex;flex-direction:column;gap:5px">
+        <p style="margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)">per aspera ad astra</p>
+        <p style="margin:0;font-size:12.5px;letter-spacing:.14em;color:var(--dim)"><span style="letter-spacing:.26em">歷盡艱辛　以達星辰</span><span style="display:inline-block;width:1px;height:.85em;background:var(--faint);margin:0 18px 0 10px;vertical-align:-.06em"></span><span style="font-size:13.5px;letter-spacing:.02em">Through hardships to the stars.</span></p>
+      </div>
+      <div id="m2" style="position:absolute;inset:0;display:flex;flex-direction:column;gap:5px">
+        <p style="margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)">viam inveniam aut faciam</p>
+        <p style="margin:0;font-size:12.5px;letter-spacing:.14em;color:var(--dim)"><span style="letter-spacing:.26em">尋一條路　或造一條路</span><span style="display:inline-block;width:1px;height:.85em;background:var(--faint);margin:0 18px 0 10px;vertical-align:-.06em"></span><span style="font-size:13.5px;letter-spacing:.02em">I shall find a way, or make one.</span></p>
+      </div>
+      <div id="m3" style="position:absolute;inset:0;display:flex;flex-direction:column;gap:5px">
+        <p style="margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)">festina lente</p>
+        <p style="margin:0;font-size:12.5px;letter-spacing:.14em;color:var(--dim)"><span style="letter-spacing:.26em">從容地趕路</span><span style="display:inline-block;width:1px;height:.85em;background:var(--faint);margin:0 18px 0 10px;vertical-align:-.06em"></span><span style="font-size:13.5px;letter-spacing:.02em">Make haste, slowly.</span></p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<Footer />
+
+</div>
+<script src="../scripts/app.js"></script>
+</BaseLayout>
