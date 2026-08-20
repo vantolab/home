@@ -1,5 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-
-<rect class="g" width="64" height="64"></rect>
-<path class="v" d="M12 18 L32 50 L52 18 L44 18 L32 38 L20 18 Z"></path>
+  <style>
+    .bg { fill: #f3f2f2 }
+    .v { fill: #201e1d }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #201e1d }
+      .v { fill: #d3d0cd }
+    }
+  </style>
+  <rect class="bg" width="64" height="64"/>
+  <path class="v" d="M12 16 L32 46 L52 16 L44 16 L32 36 L20 16 Z" transform="translate(9,0) skewX(-16)"/>
+  <rect x="18" y="50" width="28" height="5" fill="#ec3013"/>
 </svg>
