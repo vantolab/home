@@ -78,8 +78,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 [data-wx="rain"] #birds,[data-wx="snow"] #birds,[data-tod="night"] #birds{opacity:0}
 #d0,#d1,#d2,#d3,#d4,#d5{opacity:0}
 [data-di="0"] #d0,[data-di="1"] #d1,[data-di="2"] #d2,[data-di="3"] #d3,[data-di="4"] #d4,[data-di="5"] #d5{opacity:1}
-#m0,#m1,#m2,#m3{opacity:0;transition:opacity 1.4s ease}
-[data-mi="0"] #m0,[data-mi="1"] #m1,[data-mi="2"] #m2,[data-mi="3"] #m3{opacity:1}
+#m0,#m1,#m2,#m3,#m4,#m5,#m6,#m7{opacity:0;transition:opacity 1.4s ease}
+[data-mi="0"] #m0,[data-mi="1"] #m1,[data-mi="2"] #m2,[data-mi="3"] #m3,[data-mi="4"] #m4,[data-mi="5"] #m5,[data-mi="6"] #m6,[data-mi="7"] #m7{opacity:1}
 
 @keyframes vanBob{
   0%{transform:translateY(0) rotate(-.12deg)}

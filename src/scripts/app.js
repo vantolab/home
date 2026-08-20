@@ -4,7 +4,7 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var tods = ['dawn', 'day', 'dusk', 'night'];
   var wxs = ['sun', 'rain', 'wind', 'snow'];
-  var dists = 6, mottos = 4;
+  var dists = 6, mottos = 8;
   var flip = 'a';
 
   if (window.matchMedia('(prefers-color-scheme: dark)').matches) scene.setAttribute('data-tod', 'night');
