@@ -52,12 +52,10 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 [data-wx="rain"] .cdrip{opacity:.5}
 [data-wx="snow"] .cloud{fill:var(--snowB);stroke:var(--snowC)}
 @keyframes dashDriftX{from{transform:translateX(0)}to{transform:translateX(-14px)}}
-#flowers,#pole,#lamp,#meteor{opacity:0;transition:opacity .9s ease}
-[data-wx="sun"][data-tod="day"] #flowers{opacity:1}
+#pole,#lamp,#meteor{opacity:0;transition:opacity .9s ease}
 [data-wx="sun"][data-tod="dusk"] #pole{opacity:1}
 [data-tod="night"] #lamp{opacity:1}
 [data-tod="night"][data-wx="sun"] #meteor{opacity:1}
-@keyframes beeFlit{0%,100%{transform:translate(0,0)}25%{transform:translate(20px,-12px)}55%{transform:translate(38px,4px)}80%{transform:translate(14px,12px)}}
 @keyframes fireflyBlink{0%,100%{opacity:.08}50%{opacity:.85}}
 @keyframes shoulderPass{
   0%{transform:translate(-160px,52px) scale(1.35);opacity:0}
